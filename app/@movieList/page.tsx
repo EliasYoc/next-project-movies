@@ -12,12 +12,12 @@ import {
 export default async function movieList() {
   const movieRes = await getMovieList();
   const movieData = (await movieRes.json()) as IDiscoverMoviesSeries;
-  console.log(movieData, "movies");
+
   const tmbdDetailsRes = await getTmdbConfiguration({ which: "details" });
   const tmdbDetailsData = (await tmbdDetailsRes.json()) as TmdbConfigDetails;
-  console.log(tmdbDetailsData, "images");
+
   return (
-    <div className="scrollbar-hidden bg-orange-800 flex overflow-x-scroll">
+    <div className="scrollbar-hidden flex overflow-x-scroll gap-2">
       {movieData.results.map((movie) => (
         <ShowCard
           key={movie.id}

@@ -31,8 +31,7 @@ export default async function RootLayout({
 }>) {
   const configRes = await getTmdbConfiguration({ which: "details" });
   const configData = (await configRes.json()) as TmdbConfigDetails;
-  console.log(configData);
-  console.log("layout");
+
   return (
     <html lang="en">
       <body
