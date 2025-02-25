@@ -20,6 +20,7 @@ export default function ShowCard({
 }: CardProps) {
   const ImageUi = (
     <Image
+      priority
       alt={`poster of ${title}`}
       src={src}
       className="absolute w-full h-full object-cover select-none rounded-md"

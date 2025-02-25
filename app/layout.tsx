@@ -24,10 +24,8 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  movieList,
 }: Readonly<{
   children: React.ReactNode;
-  movieList: React.ReactNode;
 }>) {
   const configRes = await getTmdbConfiguration({ which: "details" });
   const configData = (await configRes.json()) as TmdbConfigDetails;
@@ -37,10 +35,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ConfigStoreProvider value={configData}>
-          {children}
-          {movieList}
-        </ConfigStoreProvider>
+        <ConfigStoreProvider value={configData}>{children}</ConfigStoreProvider>
       </body>
     </html>
   );

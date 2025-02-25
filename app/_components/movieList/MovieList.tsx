@@ -1,15 +1,15 @@
 // https://developer.themoviedb.org/reference/discover-movie
-import ShowCard from "../_components/ui/ShowCard";
+import ShowCard from "../ui/ShowCard";
 import {
   getTmdbConfiguration,
   TmdbConfigDetails,
-} from "../_services/tmdb/configuration";
+} from "../../_services/tmdb/configuration";
 import {
   getMovieList,
   IDiscoverMoviesSeries,
-} from "../_services/tmdb/discover";
+} from "../../_services/tmdb/discover";
 
-export default async function movieList() {
+export default async function MovieList() {
   const movieRes = await getMovieList();
   const movieData = (await movieRes.json()) as IDiscoverMoviesSeries;
 
@@ -20,6 +20,7 @@ export default async function movieList() {
     <div className="scrollbar-hidden flex overflow-x-scroll gap-2">
       {movieData.results.map((movie) => (
         <ShowCard
+          navigateTo={`/movie/${movie.id}`}
           key={movie.id}
           title={movie.title}
           src={`${tmdbDetailsData.images.secure_base_url}${tmdbDetailsData.images.poster_sizes[2]}${movie.poster_path}`}

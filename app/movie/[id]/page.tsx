@@ -1,3 +1,3 @@
 export default async function SelectedMovie({ params }) {
-  return <div></div>;
+  return <div>Movie</div>;
 }

@@ -1,4 +1,5 @@
 "use client";
+// este error era para el slot
 
 import { useEffect } from "react";
 

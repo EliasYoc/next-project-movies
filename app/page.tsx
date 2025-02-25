@@ -1,7 +1,9 @@
+import MovieList from "./_components/movieList/MovieList";
+
 export default function Home() {
   return (
-    <div>
-      <main></main>
-    </div>
+    <main>
+      <MovieList />
+    </main>
   );
 }
