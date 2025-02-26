@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import cineBoleto from "../app/_lotties/cine-boleto.json";
 import { ConfigStoreProvider } from "./_providers/config-store-provider";
 import {
   getTmdbConfiguration,
   TmdbConfigDetails,
 } from "./_services/tmdb/configuration";
+import LottiePlayer from "./_components/lottiePlayer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +37,10 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <header className="flex gap-2 text-3xl items-center p-4">
+          <LottiePlayer size={50} alternatelyLoop lottieJson={cineBoleto} />
+          <h1>Movies</h1>
+        </header>
         <ConfigStoreProvider value={configData}>{children}</ConfigStoreProvider>
       </body>
     </html>
