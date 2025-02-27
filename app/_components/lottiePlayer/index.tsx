@@ -1,4 +1,5 @@
 "use client";
+// como Player usa document entonces este componente debe estar en el client con dynamic()
 import { Player } from "@lordicon/react";
 import { useEffect, useRef, useState } from "react";
 
