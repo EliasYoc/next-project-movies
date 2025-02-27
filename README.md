@@ -1,4 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+NODE 22.12.0
+
+install dependencies
+
+`npm i`
 
 ## Getting Started
 
@@ -16,21 +20,19 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# TMDB API
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+You've got to use TMDB.
 
-## Learn More
+- [login](https://www.themoviedb.org/login), if you don have an account [signup](https://www.themoviedb.org/signup)
 
-To learn more about Next.js, take a look at the following resources:
+- go to settings and click [API](https://www.themoviedb.org/settings/api) so that you can copy the API Read Acces Token
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## env
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+on the project go to .env and If you don't have you can create a new one in the root directory
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+NEXT_PUBLIC_BASE_URL_TMDB=https://api.themoviedb.org/3
+NEXT_PUBLIC_ACCESS_TOKEN_TMDB=[your API Read Acces Token]
+```
