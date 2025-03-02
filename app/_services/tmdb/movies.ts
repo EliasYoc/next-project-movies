@@ -19,6 +19,7 @@ export const getMovieById = (
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN_TMDB}`,
       },
+      cache: "force-cache",
     }
   );
 };

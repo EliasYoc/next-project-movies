@@ -11,6 +11,7 @@ export default async function SelectedMovie({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  console.log("haciendo fetch");
   const movieRes = await getMovieById(id);
   const movie = await movieRes.json();
   const tmbdDetailsRes = await getTmdbConfiguration({ which: "details" });
