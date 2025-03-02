@@ -37,7 +37,9 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LayoutHeader />
-        <ConfigStoreProvider value={configData}>{children}</ConfigStoreProvider>
+        <ConfigStoreProvider value={configData}>
+          <main>{children}</main>
+        </ConfigStoreProvider>
       </body>
     </html>
   );
