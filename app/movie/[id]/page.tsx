@@ -1,9 +1,6 @@
-import {
-  getTmdbConfiguration,
-  TmdbConfigDetails,
-} from "@/app/_services/tmdb/configuration";
+import { getTmdbConfiguration } from "@/app/_services/tmdb/configuration";
 import { getMovieById } from "@/app/_services/tmdb/movies";
-import Image from "next/image";
+import Cover from "../_components/cover";
 
 export default async function SelectedMovie({
   params,
@@ -12,26 +9,19 @@ export default async function SelectedMovie({
 }) {
   const { id } = await params;
   console.log("haciendo fetch");
-  const movieRes = await getMovieById(id);
-  const movie = await movieRes.json();
-  const tmbdDetailsRes = await getTmdbConfiguration({ which: "details" });
-  const tmdbDetailsData = (await tmbdDetailsRes.json()) as TmdbConfigDetails;
+  const movie = await getMovieById(id);
+
+  const tmdbDetailsData = await getTmdbConfiguration({ which: "details" });
 
   console.log(movie, tmdbDetailsData);
+  const { backdrop_path, title } = movie;
 
   return (
     <>
-      <section>
-        <Image
-          src={`${tmdbDetailsData.images.secure_base_url}${tmdbDetailsData.images.backdrop_sizes[1]}${movie.backdrop_path}`}
-          alt={movie.title}
-          width={500}
-          height={300}
-          priority
-          style={{ width: "100%", height: "auto" }}
-        />
-        <p>content</p>
-      </section>
+      <Cover
+        movieTitle={title}
+        portraitSrc={`${tmdbDetailsData.images.secure_base_url}${tmdbDetailsData.images.backdrop_sizes[1]}${backdrop_path}`}
+      />
     </>
   );
 }

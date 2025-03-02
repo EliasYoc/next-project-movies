@@ -1,3 +1,5 @@
+import { IMovieDetail } from "@/app/_services/tmdb/types";
+
 export interface IMovieSearchParams {
   append_to_response?: string;
   language: `${string}-${string}`;
@@ -7,13 +9,13 @@ const defaultSearchParams: IMovieSearchParams = {
   language: "en-US",
 };
 
-export const getMovieById = (
+export const getMovieById = async (
   id: string,
   searchParams: IMovieSearchParams = defaultSearchParams
-): Promise<Response> => {
+) => {
   const searchParamTuple = Object.entries(searchParams);
   const stringSearchParams = new URLSearchParams(searchParamTuple).toString();
-  return fetch(
+  const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/movie/${id}?${stringSearchParams}`,
     {
       headers: {
@@ -22,4 +24,6 @@ export const getMovieById = (
       cache: "force-cache",
     }
   );
+  const data: IMovieDetail = await res.json();
+  return data;
 };

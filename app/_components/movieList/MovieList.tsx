@@ -1,20 +1,12 @@
 // https://developer.themoviedb.org/reference/discover-movie
 import ShowCard from "../ui/ShowCard";
-import {
-  getTmdbConfiguration,
-  TmdbConfigDetails,
-} from "../../_services/tmdb/configuration";
-import {
-  getMovieList,
-  IDiscoverMoviesSeries,
-} from "../../_services/tmdb/discover";
+import { getTmdbConfiguration } from "../../_services/tmdb/configuration";
+import { getMovieList } from "../../_services/tmdb/discover";
 
 export default async function MovieList() {
-  const movieRes = await getMovieList();
-  const movieData = (await movieRes.json()) as IDiscoverMoviesSeries;
+  const movieData = await getMovieList();
 
-  const tmbdDetailsRes = await getTmdbConfiguration({ which: "details" });
-  const tmdbDetailsData = (await tmbdDetailsRes.json()) as TmdbConfigDetails;
+  const tmdbDetailsData = await getTmdbConfiguration({ which: "details" });
 
   return (
     <div className="scrollbar-hidden flex overflow-x-scroll gap-2">
