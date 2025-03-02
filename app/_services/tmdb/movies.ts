@@ -1,4 +1,4 @@
-import { IMovieDetail } from "@/app/_services/tmdb/types";
+import { MovieDetail } from "@/app/_services/tmdb/types";
 
 export interface IMovieSearchParams {
   append_to_response?: string;
@@ -24,6 +24,6 @@ export const getMovieById = async (
       cache: "force-cache",
     }
   );
-  const data: IMovieDetail = await res.json();
+  const data: MovieDetail = await res.json();
   return data;
 };

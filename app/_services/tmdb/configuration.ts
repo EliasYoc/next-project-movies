@@ -1,4 +1,4 @@
-import { ITmdbDetailsConfig } from "@/app/_services/tmdb/types";
+import { TmdbDetailsConfig } from "@/app/_services/tmdb/types";
 
 type ConfigurationType =
   | { which: "details" }
@@ -31,6 +31,6 @@ export const getTmdbConfiguration = async (
       },
     }
   );
-  const data: ITmdbDetailsConfig = await res.json();
+  const data: TmdbDetailsConfig = await res.json();
   return data;
 };

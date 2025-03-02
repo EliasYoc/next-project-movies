@@ -1,6 +1,6 @@
 //https://developer.themoviedb.org/reference/discover-movie
 
-import { IDiscoverMoviesSeries } from "./types";
+import { DiscoverMovies } from "./types";
 
 interface MovieListSearchParams {
   certification?: string;
@@ -35,6 +35,6 @@ export const getMovieList = async (
       },
     }
   );
-  const data: IDiscoverMoviesSeries = await res.json();
+  const data: DiscoverMovies = await res.json();
   return data;
 };
