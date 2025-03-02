@@ -6,7 +6,7 @@ export interface IMovieSearchParams {
 }
 
 const defaultSearchParams: IMovieSearchParams = {
-  language: "en-US",
+  language: "es-MX",
 };
 
 export const getMovieById = async (
