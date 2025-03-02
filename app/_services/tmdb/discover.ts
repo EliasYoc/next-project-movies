@@ -27,7 +27,7 @@ export interface IMovieSerieMiniDetail {
   vote_count: number;
 }
 
-interface MovieListParams {
+interface MovieListSearchParams {
   certification?: string;
   "certification.gte"?: string;
   "certification.lte"?: string;
@@ -39,7 +39,7 @@ interface MovieListParams {
   sort_by: `${string}.${string}`;
 }
 
-const defaultParams: MovieListParams = {
+const defaultSearchParams: MovieListSearchParams = {
   include_adult: false,
   include_video: false,
   language: "en-US",
@@ -48,12 +48,12 @@ const defaultParams: MovieListParams = {
 };
 
 export const getMovieList = (
-  params: MovieListParams = defaultParams
+  searchParams: MovieListSearchParams = defaultSearchParams
 ): Promise<Response> => {
-  const paramTuple = Object.entries(params);
-  const stringParams = new URLSearchParams(paramTuple).toString();
+  const searchParamTuple = Object.entries(searchParams);
+  const stringSearchParams = new URLSearchParams(searchParamTuple).toString();
   return fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/discover/movie?${stringParams}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/discover/movie?${stringSearchParams}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN_TMDB}`,

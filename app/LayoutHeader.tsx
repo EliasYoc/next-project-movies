@@ -1,6 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
-import cineBoleto from "../app/_lotties/cine-boleto.json";
+import cinema from "../app/_lotties/cinema.json";
 // funciona importar asi pero aqui solo estoy importando desde el header, y cada vez que quiero agregar un lottie en otro componente tengo que repetir el mismo dynamic
 const LottiePlayer = dynamic(() => import("./_components/lottiePlayer"), {
   ssr: false,
@@ -11,8 +11,8 @@ const LottiePlayer = dynamic(() => import("./_components/lottiePlayer"), {
 
 export default function LayoutHeader() {
   return (
-    <header className="flex gap-2 text-3xl items-center p-4">
-      <LottiePlayer size={50} alternatelyLoop lottieJson={cineBoleto} />
+    <header className="fixed flex gap-2 text-3xl items-center p-4">
+      <LottiePlayer size={50} alternatelyLoop lottieJson={cinema} />
       <h1>Movies</h1>
     </header>
   );
