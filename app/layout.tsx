@@ -2,10 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ConfigStoreProvider } from "./_providers/config-store-provider";
-import {
-  getTmdbConfiguration,
-  TmdbConfigDetails,
-} from "./_services/tmdb/configuration";
+import { getTmdbConfiguration } from "./_services/tmdb/configuration";
 import LayoutHeader from "./LayoutHeader";
 
 const geistSans = Geist({
@@ -28,8 +25,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const configRes = await getTmdbConfiguration({ which: "details" });
-  const configData = (await configRes.json()) as TmdbConfigDetails;
+  const configData = await getTmdbConfiguration({ which: "details" });
 
   return (
     <html lang="en">

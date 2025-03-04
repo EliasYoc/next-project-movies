@@ -1,10 +1,10 @@
 import { createStore } from "zustand";
-import { TmdbConfigDetails } from "../_services/tmdb/configuration";
+import { TmdbDetailsConfig } from "../_services/tmdb/types";
 // como solo queria que al iniciar la app cargara los datos de un fetch que seran de solo lectura (como configuracion) para la mayoria de los componentes de la app, creo que la conclusion es solo usar context
 // nada de aqui se esta usando
 
 interface ConfigState {
-  details: TmdbConfigDetails | null;
+  details: TmdbDetailsConfig | null;
 }
 interface ConfigActions {
   setData: (data: ConfigState) => void;
