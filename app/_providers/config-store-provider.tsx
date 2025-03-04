@@ -1,17 +1,17 @@
 "use client";
 import { createContext, useContext } from "react";
-import // ConfigStore,
-// createConfigStore,
-"../_stores/config-store";
-import { TmdbConfigDetails } from "../_services/tmdb/configuration";
+import { TmdbDetailsConfig } from "../_services/tmdb/types";
+// import // ConfigStore,
+// // createConfigStore,
+// "../_stores/config-store";
 
-const ConfigStoreContext = createContext<TmdbConfigDetails | null>(null);
+const ConfigStoreContext = createContext<TmdbDetailsConfig | null>(null);
 
 export const ConfigStoreProvider = ({
   value,
   children,
 }: {
-  value: TmdbConfigDetails;
+  value: TmdbDetailsConfig;
   children: React.ReactNode;
 }) => {
   // const storeRef = useRef<configStoreApi | null>(value);
