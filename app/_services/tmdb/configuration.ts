@@ -1,15 +1,4 @@
-export interface TmdbConfigDetails {
-  change_keys: string[];
-  images: {
-    base_url: string;
-    secure_base_url: string;
-    backdrop_sizes: string[];
-    logo_sizes: string[];
-    poster_sizes: string[];
-    profile_sizes: string[];
-    still_sizes: string[];
-  };
-}
+import { TmdbDetailsConfig } from "@/app/_services/tmdb/types";
 
 type ConfigurationType =
   | { which: "details" }
@@ -22,9 +11,9 @@ type ConfigurationType =
 interface ConfigurationCountriesParams {
   language: `${string}-${string}`;
 }
-export const getTmdbConfiguration = (
+export const getTmdbConfiguration = async (
   configuration: ConfigurationType
-): Promise<Response> => {
+) => {
   const { which } = configuration;
   const paramTuple =
     configuration && which === "countries"
@@ -32,7 +21,7 @@ export const getTmdbConfiguration = (
       : [];
   const stringParams = new URLSearchParams(paramTuple).toString();
 
-  return fetch(
+  const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/configuration${
       which === "details" ? "" : `${which}`
     }${stringParams}`,
@@ -42,4 +31,6 @@ export const getTmdbConfiguration = (
       },
     }
   );
+  const data: TmdbDetailsConfig = await res.json();
+  return data;
 };
