@@ -1,16 +1,18 @@
-// https://developer.themoviedb.org/reference/discover-movie
-import ShowCard from "../ui/ShowCard";
-import { getTmdbConfiguration } from "../../_services/tmdb/configuration";
-import { getMovieList } from "../../_services/tmdb/discover";
+//https://developer.themoviedb.org/reference/movie-recommendations
+import ShowCard from "@/app/_components/ui/ShowCard";
+import { getTmdbConfiguration } from "@/app/_services/tmdb/configuration";
+import { getMovieRecomendations } from "@/app/_services/tmdb/movies";
 
-export default async function MovieList({
+export default async function MovieRecommendations({
   title,
   className,
+  movieId,
 }: {
   title?: string;
   className?: string;
+  movieId: string;
 }) {
-  const movieData = await getMovieList();
+  const movieData = await getMovieRecomendations(movieId);
 
   const tmdbDetailsData = await getTmdbConfiguration({ which: "details" });
 

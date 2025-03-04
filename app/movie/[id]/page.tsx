@@ -1,6 +1,7 @@
 import { getTmdbConfiguration } from "@/app/_services/tmdb/configuration";
 import { getMovieById } from "@/app/_services/tmdb/movies";
 import Cover from "../_components/cover";
+import MovieRecommendations from "../_components/movieRecommendations";
 
 export default async function SelectedMovie({
   params,
@@ -8,12 +9,9 @@ export default async function SelectedMovie({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  console.log("haciendo fetch");
   const movie = await getMovieById(id);
 
   const tmdbDetailsData = await getTmdbConfiguration({ which: "details" });
-
-  console.log(movie, tmdbDetailsData);
   const { backdrop_path, title, overview } = movie;
 
   return (
@@ -28,6 +26,10 @@ export default async function SelectedMovie({
           <p>{overview}</p>
         </div>
       </Cover>
+      <section className="p-4">
+        <MovieRecommendations movieId={id} />
+      </section>
+      <section>{/* tabs */}</section>
     </>
   );
 }
