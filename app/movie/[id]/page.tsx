@@ -2,6 +2,7 @@ import { getTmdbConfiguration } from "@/app/_services/tmdb/configuration";
 import { getMovieById } from "@/app/_services/tmdb/movies";
 import Cover from "../_components/cover";
 import MovieRecommendations from "../_components/movieRecommendations";
+import Tabs from "@/app/_components/tabs";
 
 export default async function SelectedMovie({
   params,
@@ -13,7 +14,7 @@ export default async function SelectedMovie({
 
   const tmdbDetailsData = await getTmdbConfiguration({ which: "details" });
   const { backdrop_path, title, overview } = movie;
-
+  console.log(movie);
   return (
     <>
       <Cover
@@ -29,7 +30,16 @@ export default async function SelectedMovie({
       <section className="p-4">
         <MovieRecommendations movieId={id} />
       </section>
-      <section>{/* tabs */}</section>
+      <section>
+        {/* tabs */}
+        <Tabs
+          panels={[
+            { id: "posters", tabTitle: "Posters", panel: "Posters" },
+            { id: "logos", tabTitle: "Logos", panel: "Logos" },
+            { id: "backdrops", tabTitle: "Backdrops", panel: "Backdrops" },
+          ]}
+        />
+      </section>
     </>
   );
 }
