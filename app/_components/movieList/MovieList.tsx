@@ -1,5 +1,5 @@
 // https://developer.themoviedb.org/reference/discover-movie
-import ShowCard from "../ui/ShowCard";
+import Poster from "../ui/Poster";
 import { getTmdbConfiguration } from "../../_services/tmdb/configuration";
 import { getMovieList } from "../../_services/tmdb/discover";
 
@@ -19,7 +19,7 @@ export default async function MovieList({
       {title && <h2 className="text-3xl font-semibold">{title}</h2>}
       <div className="scrollbar-hidden flex overflow-x-scroll gap-2">
         {movieData.results.map((movie) => (
-          <ShowCard
+          <Poster
             navigateTo={`/movie/${movie.id}`}
             key={movie.id}
             title={movie.title}

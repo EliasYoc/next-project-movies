@@ -10,14 +10,7 @@ interface CardProps {
   description?: string;
   navigateTo?: Url;
 }
-export default function ShowCard({
-  src,
-  // average,
-  // description,
-  // releaseDate = null,
-  title,
-  navigateTo,
-}: CardProps) {
+export default function Poster({ src, title, navigateTo }: CardProps) {
   const ImageUi = (
     <Image
       priority
@@ -32,7 +25,6 @@ export default function ShowCard({
   return (
     <figure className="rounded-md relative w-[135px] aspect-[2/3] shrink-0">
       {navigateTo ? <Link href={navigateTo}>{ImageUi}</Link> : ImageUi}
-      <figcaption className="relative text-zinc-50 p-0.5"></figcaption>
     </figure>
   );
 }

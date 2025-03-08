@@ -27,11 +27,10 @@ export default async function SelectedMovie({
           <p>{overview}</p>
         </div>
       </Cover>
-      <section className="p-4">
-        <MovieRecommendations movieId={id} />
-      </section>
+
+      <MovieRecommendations movieId={id} />
+
       <section>
-        {/* tabs */}
         <Tabs
           panels={[
             { id: "posters", tabTitle: "Posters", panel: "Posters" },

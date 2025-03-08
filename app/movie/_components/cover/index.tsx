@@ -17,6 +17,7 @@ export default function Cover({
   return (
     <section className={`relative ${gradientElement}`}>
       <Image
+        className="max-h-[100vh] object-cover"
         src={portraitSrc}
         alt={movieTitle}
         width={780}
