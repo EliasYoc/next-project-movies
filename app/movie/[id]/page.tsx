@@ -20,7 +20,11 @@ export default async function SelectedMovie({
       <Cover
         layoutClassName="flex items-end"
         movieTitle={title}
-        portraitSrc={`${tmdbDetailsData.images.secure_base_url}${tmdbDetailsData.images.backdrop_sizes[1]}${backdrop_path}`}
+        portraitSrc={
+          !backdrop_path
+            ? ""
+            : `${tmdbDetailsData.images.secure_base_url}${tmdbDetailsData.images.backdrop_sizes[1]}${backdrop_path}`
+        }
       >
         <div className="w-1/2">
           <h2 className="text-3xl font-semibold">{title}</h2>
