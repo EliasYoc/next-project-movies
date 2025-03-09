@@ -1,5 +1,5 @@
 //https://developer.themoviedb.org/reference/movie-recommendations
-import ShowCard from "@/app/_components/ui/ShowCard";
+import Poster from "@/app/_components/ui/Poster";
 import { getTmdbConfiguration } from "@/app/_services/tmdb/configuration";
 import { getMovieRecomendations } from "@/app/_services/tmdb/movies";
 
@@ -21,11 +21,15 @@ export default async function MovieRecommendations({
       {title && <h2 className="text-3xl font-semibold">{title}</h2>}
       <div className="scrollbar-hidden flex overflow-x-scroll gap-2">
         {movieData.results.map((movie) => (
-          <ShowCard
+          <Poster
             navigateTo={`/movie/${movie.id}`}
             key={movie.id}
-            title={movie.title}
-            src={`${tmdbDetailsData.images.secure_base_url}${tmdbDetailsData.images.poster_sizes[2]}${movie.poster_path}`}
+            title={!movie.poster_path ? movie.title : null}
+            src={
+              !movie.poster_path
+                ? "/assets/image-not-available.jpg"
+                : `${tmdbDetailsData.images.secure_base_url}${tmdbDetailsData.images.poster_sizes[1]}${movie.poster_path}`
+            }
           />
         ))}
       </div>
