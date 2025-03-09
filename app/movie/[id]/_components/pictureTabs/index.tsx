@@ -13,7 +13,8 @@ export default async function PictureTabs({
 }) {
   const { posters } = await getImagesFrom<TMDBTheShowsImages>(mediaType, id);
 
-  const postersInColumns = arrayToMatrix(posters, 3);
+  const columns = 3;
+  const postersInColumns = arrayToMatrix(posters, columns);
 
   return (
     <Tabs
@@ -21,7 +22,12 @@ export default async function PictureTabs({
         {
           id: "posters",
           tabTitle: "Posters",
-          panel: <PostersPanel postersMatrix={postersInColumns} />,
+          panel: (
+            <PostersPanel
+              postersMatrix={postersInColumns}
+              columnsLength={columns}
+            />
+          ),
         },
         { id: "logos", tabTitle: "Logos", panel: "Logos" },
         { id: "backdrops", tabTitle: "Backdrops", panel: "Backdrops" },
