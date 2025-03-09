@@ -15,11 +15,11 @@ export default async function MovieRecommendations({
   const movieData = await getMovieRecomendations(movieId);
 
   const tmdbDetailsData = await getTmdbConfiguration({ which: "details" });
-  console.log(movieData);
+
   return (
     <section className={`movie-list ${className}`}>
       {title && <h2 className="text-3xl font-semibold">{title}</h2>}
-      <div className="px-4 scrollbar-hidden flex overflow-x-scroll gap-2">
+      <div className="scrollbar-hidden flex overflow-x-scroll gap-2">
         {movieData.results.map((movie) => (
           <Poster
             navigateTo={`/movie/${movie.id}`}

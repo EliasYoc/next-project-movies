@@ -18,13 +18,13 @@ export default function Cover({
     <section className={`relative ${gradientElement} min-h-[100vh]`}>
       {portraitSrc && (
         <Image
-          className="object-cover"
+          className="object-cover h-[100vh]"
           src={portraitSrc}
           alt={movieTitle}
           width={780}
           height={439}
           priority
-          style={{ width: "100%", height: "auto" }}
+          style={{ width: "100%" }}
         />
       )}
       <div
