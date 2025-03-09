@@ -1,3 +1,4 @@
+import { searchParamsToString } from "@/app/_lib/utils";
 import { DiscoverMovies, MovieDetail } from "@/app/_services/tmdb/types";
 
 export interface IMovieSearchParams {
@@ -13,10 +14,10 @@ export const getMovieById = async (
   id: string,
   searchParams: IMovieSearchParams = defaultSearchParams
 ) => {
-  const searchParamTuple = Object.entries(searchParams);
-  const stringSearchParams = new URLSearchParams(searchParamTuple).toString();
+  const searchParamsString = searchParamsToString(searchParams);
+
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/movie/${id}?${stringSearchParams}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/movie/${id}${searchParamsString}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN_TMDB}`,
@@ -41,10 +42,9 @@ export const getMovieRecomendations = async (
   id: string,
   searchParams: RecommendationsSearchParams = defaultRecommendationsSearchParams
 ) => {
-  const searchParamTuple = Object.entries(searchParams);
-  const stringSearchParams = new URLSearchParams(searchParamTuple).toString();
+  const stringSearchParams = searchParamsToString(searchParams);
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/movie/${id}/recommendations?${stringSearchParams}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/movie/${id}/recommendations${stringSearchParams}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN_TMDB}`,
