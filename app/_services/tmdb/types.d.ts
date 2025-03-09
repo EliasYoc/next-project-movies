@@ -231,6 +231,7 @@ export interface TmdbDetailsConfig {
   };
 }
 
+export type MediaType = "movie" | "tv";
 export type JobsConfig = { department: string; jobs: string[] }[];
 export type DiscoverMovies = DiscoverList<DiscoverMovieDetail>;
 export type DiscoverSeries = DiscoverList<DiscoverSerieDetail>;

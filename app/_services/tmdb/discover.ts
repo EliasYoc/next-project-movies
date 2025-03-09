@@ -1,5 +1,6 @@
 //https://developer.themoviedb.org/reference/discover-movie
 
+import { searchParamsToString } from "@/app/_lib/utils";
 import { DiscoverMovies } from "./types";
 
 interface MovieListSearchParams {
@@ -25,10 +26,9 @@ const defaultSearchParams: MovieListSearchParams = {
 export const getMovieList = async (
   searchParams: MovieListSearchParams = defaultSearchParams
 ) => {
-  const searchParamTuple = Object.entries(searchParams);
-  const stringSearchParams = new URLSearchParams(searchParamTuple).toString();
+  const searchParamsString = searchParamsToString(searchParams);
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/discover/movie?${stringSearchParams}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/discover/movie?${searchParamsString}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN_TMDB}`,
