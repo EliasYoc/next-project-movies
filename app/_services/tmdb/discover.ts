@@ -28,7 +28,7 @@ export const getMovieList = async (
 ) => {
   const searchParamsString = searchParamsToString(searchParams);
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/discover/movie?${searchParamsString}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL_TMDB}/discover/movie${searchParamsString}`,
     {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_ACCESS_TOKEN_TMDB}`,

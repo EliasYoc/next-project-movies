@@ -12,5 +12,5 @@ export const searchParamsToString = <T extends object>(
 ): string => {
   const searchParamTuple = Object.entries(searchParams);
   const stringSearchParams = new URLSearchParams(searchParamTuple).toString();
-  return stringSearchParams;
+  return `${stringSearchParams && `?${stringSearchParams}`}`;
 };

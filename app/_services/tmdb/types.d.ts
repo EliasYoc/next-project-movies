@@ -9,7 +9,7 @@ interface TheShowImage {
   width: number;
 }
 
-interface TMDBTheShowsImages {
+export interface TMDBTheShowsImages {
   logos: TheShowImage[];
   posters: TheShowImage[];
   backdrops: TheShowImage[];

@@ -2,7 +2,8 @@ import { getTmdbConfiguration } from "@/app/_services/tmdb/configuration";
 import { getMovieById } from "@/app/_services/tmdb/movies";
 import Cover from "../_components/cover";
 import MovieRecommendations from "../_components/movieRecommendations";
-import Tabs from "@/app/_components/tabs";
+import PictureTabs from "@/app/_components/pictureTabs";
+import { Suspense } from "react";
 
 export default async function SelectedMovie({
   params,
@@ -35,13 +36,9 @@ export default async function SelectedMovie({
       <MovieRecommendations movieId={id} />
 
       <section>
-        <Tabs
-          panels={[
-            { id: "posters", tabTitle: "Posters", panel: "Posters" },
-            { id: "logos", tabTitle: "Logos", panel: "Logos" },
-            { id: "backdrops", tabTitle: "Backdrops", panel: "Backdrops" },
-          ]}
-        />
+        <Suspense fallback={<div>Loading tabs...</div>}>
+          <PictureTabs id={id} mediaType="movie" />
+        </Suspense>
       </section>
     </>
   );
