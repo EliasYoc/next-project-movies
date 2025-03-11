@@ -5,7 +5,7 @@ import { getMovieRecomendations } from "@/app/_services/tmdb/movies";
 
 export default async function MovieRecommendations({
   title,
-  className,
+  className = "",
   movieId,
 }: {
   title?: string;
