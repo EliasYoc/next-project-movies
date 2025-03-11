@@ -1,30 +1,43 @@
 "use client";
 import Poster from "@/app/_components/ui/Poster";
 import { TheShowImage } from "@/app/_services/tmdb/types";
-import { useWindowVirtualizer } from "@tanstack/react-virtual";
+import {
+  PartialKeys,
+  useWindowVirtualizer,
+  VirtualizerOptions,
+} from "@tanstack/react-virtual";
 import { useRef } from "react";
+// https://tanstack.com/virtual/latest/docs/framework/react/examples/dynamic
+// https://tanstack.com/virtual/latest/docs/framework/react/examples/window
 
 export default function VirtualizedItems({
   list,
   columnsLength,
   srcUrlBase,
+  windowVirtualizerOptions,
 }: {
   list: TheShowImage[][];
   columnsLength: number;
   srcUrlBase: string;
+  windowVirtualizerOptions: (
+    listElement: HTMLDivElement | null
+  ) => PartialKeys<
+    VirtualizerOptions<Window, Element>,
+    | "getScrollElement"
+    | "observeElementRect"
+    | "observeElementOffset"
+    | "scrollToFn"
+  >;
 }) {
-  const listRef = useRef<HTMLDivElement>(null);
-  const virtualizer = useWindowVirtualizer({
-    count: list.length,
-    estimateSize: () => 415,
-    overscan: 5,
-    scrollMargin: listRef.current ? listRef.current.offsetTop : 0,
-  });
-  // console.log(list.length, virtualizer.getTotalSize());
+  const refList = useRef<HTMLDivElement>(null);
+  const virtualizer = useWindowVirtualizer(
+    windowVirtualizerOptions(refList.current)
+  );
+
   return (
     <>
       <div
-        ref={listRef}
+        ref={refList}
         className="list relative w-full"
         style={{
           height: `${virtualizer.getTotalSize()}px`,
@@ -39,6 +52,7 @@ export default function VirtualizedItems({
               ref={virtualizer.measureElement}
               style={{
                 gridTemplateColumns: `repeat(${columnsLength},1fr)`,
+                // virtualizer.measureElemen se encarga de calcular el tamaño de cada item, y no necesita el height
                 // height: `${virtualItem.size}px`,
                 transform: `translateY(${
                   virtualItem.start - virtualizer.options.scrollMargin
