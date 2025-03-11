@@ -5,9 +5,9 @@ import { ReactNode } from "react";
 export default function Tabs({
   onChange,
   panels = [],
-  tabListClassName,
-  tabPanelClassName,
-  tabClassName,
+  tabListClassName = "",
+  tabPanelClassName = "",
+  tabClassName = "",
 }: {
   onChange?: (id: number) => void;
   panels: { id: string; tabTitle: string; panel: ReactNode }[];
@@ -20,7 +20,7 @@ export default function Tabs({
 
   const panelClassName = `${tabPanelClassName}`;
   return (
-    <TabGroup onChange={onChange}>
+    <TabGroup as="section" onChange={onChange}>
       <TabList className={tabContainerClassName}>
         {panels.map(({ id, tabTitle }) => (
           <Tab key={id} className={individualTabClassName}>

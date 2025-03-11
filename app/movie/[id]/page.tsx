@@ -35,11 +35,10 @@ export default async function SelectedMovie({
 
       <div className="max-w-[850px] m-auto">
         <MovieRecommendations movieId={id} />
-        <section>
-          <Suspense fallback={<div>Loading tabs...</div>}>
-            <PictureTabs id={id} mediaType="movie" />
-          </Suspense>
-        </section>
+
+        <Suspense fallback={<div>Loading tabs...</div>}>
+          <PictureTabs id={id} mediaType="movie" />
+        </Suspense>
       </div>
     </>
   );

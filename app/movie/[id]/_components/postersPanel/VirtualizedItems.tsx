@@ -22,9 +22,10 @@ export default function VirtualizedItems({
   });
   // console.log(list.length, virtualizer.getTotalSize());
   return (
-    <section ref={listRef} className="list">
+    <>
       <div
-        className="relative w-full"
+        ref={listRef}
+        className="list relative w-full"
         style={{
           height: `${virtualizer.getTotalSize()}px`,
         }}
@@ -33,10 +34,12 @@ export default function VirtualizedItems({
           return (
             <div
               key={virtualItem.key}
-              className={`absolute top-0 left-0 w-full grid gap-2 border-2 border-red-400`}
+              className={`absolute top-0 left-0 w-full grid gap-2 border-2 border-red-400 pb-2`}
+              data-index={virtualItem.index}
+              ref={virtualizer.measureElement}
               style={{
                 gridTemplateColumns: `repeat(${columnsLength},1fr)`,
-                height: `${virtualItem.size}px`,
+                // height: `${virtualItem.size}px`,
                 transform: `translateY(${
                   virtualItem.start - virtualizer.options.scrollMargin
                 }px)`,
@@ -54,6 +57,6 @@ export default function VirtualizedItems({
           );
         })}
       </div>
-    </section>
+    </>
   );
 }
