@@ -10,7 +10,7 @@ import { ReactNode, useRef } from "react";
 // https://tanstack.com/virtual/latest/docs/framework/react/examples/dynamic
 // https://tanstack.com/virtual/latest/docs/framework/react/examples/window
 
-export default function VirtualizedItems({
+export default function WindowVirtualizedItems({
   windowVirtualizerOptions,
   renderItems,
 }: {

@@ -1,8 +1,8 @@
 "use client";
 import { getTmdbConfiguration } from "@/app/_services/tmdb/configuration";
 import { TheShowImage } from "@/app/_services/tmdb/types";
-import VirtualizedItems from "./VirtualizedItems";
 import Poster from "@/app/_components/ui/Poster";
+import WindowVirtualizedItems from "@/app/_components/windowVirtualizedItems";
 
 export default function PostersPanel({
   postersMatrix,
@@ -16,7 +16,7 @@ export default function PostersPanel({
   const srcUrlBase = `${tmdbDetailsData.images.secure_base_url}${tmdbDetailsData.images.poster_sizes[2]}`;
   return (
     <>
-      <VirtualizedItems
+      <WindowVirtualizedItems
         renderItems={(virtualizer) =>
           virtualizer.getVirtualItems().map((virtualItem) => {
             return (
