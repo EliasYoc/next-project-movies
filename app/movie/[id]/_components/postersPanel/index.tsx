@@ -22,7 +22,7 @@ export default function PostersPanel({
             return (
               <div
                 key={virtualItem.key}
-                className={`absolute top-0 left-0 w-full grid gap-2 border-2 border-red-400 pb-2`}
+                className={`absolute top-0 left-0 w-full grid gap-2 border-2 border-red-400`}
                 data-index={virtualItem.index}
                 ref={virtualizer.measureElement}
                 style={{
@@ -51,6 +51,7 @@ export default function PostersPanel({
           estimateSize: () => 415,
           overscan: 2,
           scrollMargin: element ? element.offsetTop : 0,
+          gap: 8,
         })}
       />
     </>
