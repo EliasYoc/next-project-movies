@@ -4,12 +4,14 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 interface PosterProps {
+  dataIndex?: number;
   src: string;
   title?: ReactNode;
   navigateTo?: Url;
   width?: number;
   height?: number;
   layoutClassName?: string;
+  style?: React.CSSProperties;
 }
 export default function Poster({
   src,
@@ -18,6 +20,7 @@ export default function Poster({
   width = 185,
   height = 278,
   layoutClassName,
+  style,
 }: PosterProps) {
   const ImageUi = (
     <Image
@@ -33,6 +36,7 @@ export default function Poster({
   return (
     <figure
       className={`rounded-md relative w-[135px] aspect-[2/3] shrink-0 overflow-hidden ${layoutClassName}`}
+      style={style}
     >
       {navigateTo ? <Link href={navigateTo}>{ImageUi}</Link> : ImageUi}
       {title && (
