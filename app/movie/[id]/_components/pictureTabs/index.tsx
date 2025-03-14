@@ -3,6 +3,7 @@ import Tabs from "../../../../_components/tabs";
 import { getImagesFrom } from "@/app/_services/tmdb/sharedEndpoints";
 import { arrayToMatrix } from "@/app/_lib/utils";
 import PostersPanel from "../postersPanel";
+import { getTmdbConfiguration } from "@/app/_services/tmdb/configuration";
 
 export default async function PictureTabs({
   id,
@@ -12,6 +13,7 @@ export default async function PictureTabs({
   mediaType: MediaType;
 }) {
   const { posters } = await getImagesFrom<TMDBTheShowsImages>(mediaType, id);
+  const tmdbDetailsData = await getTmdbConfiguration({ which: "details" });
 
   const columns = 3;
   const postersInColumns = arrayToMatrix(posters, columns);
@@ -24,6 +26,7 @@ export default async function PictureTabs({
           tabTitle: "Posters",
           panel: (
             <PostersPanel
+              tmdbDetailsData={tmdbDetailsData}
               postersMatrix={postersInColumns}
               columnsLength={columns}
             />
