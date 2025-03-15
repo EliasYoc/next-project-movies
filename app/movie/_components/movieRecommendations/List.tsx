@@ -27,7 +27,7 @@ export default function List({
       renderChildren={(virtualizer) => (
         <div
           ref={refList}
-          className="virtual-container border-2 border-red-400 overflow-y-scroll scrollbar-hidden"
+          className="virtual-container overflow-x-scroll overflow-y-hidden scrollbar-hidden"
           style={{ height: "205px" }}
         >
           <div
