@@ -12,7 +12,7 @@ const LottiePlayer = dynamic(() => import("./_components/lottiePlayer"), {
 
 export default function LayoutHeader() {
   return (
-    <header className="fixed top-0 w-full flex text-3xl  p-3 z-10">
+    <header className="fixed top-0 w-full flex text-3xl  p-3 z-10 backdrop-blur-2xl bg-[#00000094]">
       <Link className="flex gap-2 items-center" href="/">
         <LottiePlayer size={50} alternatelyLoop lottieJson={cinema} />
         <h1>Movies</h1>
