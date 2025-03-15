@@ -15,7 +15,7 @@ export default async function SelectedMovie({
 
   const tmdbDetailsData = await getTmdbConfiguration({ which: "details" });
   const { backdrop_path, title, overview } = movie;
-  console.log(tmdbDetailsData);
+
   return (
     <>
       <Cover
