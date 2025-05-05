@@ -21,9 +21,10 @@ export default async function PictureTabs({
   const tmdbDetailsData = await getTmdbConfiguration({ which: "details" });
   console.log(tmdbDetailsData);
   const columns = 3;
+  const backdropsColumns = 2;
   const postersInColumns = arrayToMatrix(posters, columns);
   const logosInColumns = arrayToMatrix(logos, columns);
-  const backdropsInColumns = arrayToMatrix(backdrops, columns);
+  const backdropsInColumns = arrayToMatrix(backdrops, backdropsColumns);
 
   return (
     <Tabs
@@ -57,7 +58,7 @@ export default async function PictureTabs({
             <BackdropsPanel
               tmdbDetailsData={tmdbDetailsData}
               backdropsMatrix={backdropsInColumns}
-              columnsLength={columns}
+              columnsLength={backdropsColumns}
             />
           ),
         },

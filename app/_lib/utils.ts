@@ -10,7 +10,9 @@ export const arrayToMatrix = <T>(list: T[], columns: number) => {
 export const searchParamsToString = <T extends object>(
   searchParams: T
 ): string => {
-  const searchParamTuple = Object.entries(searchParams);
+  const searchParamTuple = Object.entries(searchParams).filter(
+    ([, value]) => value
+  );
   const stringSearchParams = new URLSearchParams(searchParamTuple).toString();
-  return `${stringSearchParams && `?${stringSearchParams}`}`;
+  return stringSearchParams && `?${stringSearchParams}`;
 };
