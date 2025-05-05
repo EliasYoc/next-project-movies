@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ConfigStoreProvider } from "./_providers/config-store-provider";
 import { getTmdbConfiguration } from "./_services/tmdb/configuration";
 import LayoutHeader from "./LayoutHeader";
+import { ThemeProvider } from "@mui/material";
+import muiTheme from "./muiTheme";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,10 +35,14 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LayoutHeader />
-        <ConfigStoreProvider value={configData}>
-          <main>{children}</main>
-        </ConfigStoreProvider>
+        <AppRouterCacheProvider>
+          <ThemeProvider theme={muiTheme}>
+            <LayoutHeader />
+            <ConfigStoreProvider value={configData}>
+              <main>{children}</main>
+            </ConfigStoreProvider>
+          </ThemeProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

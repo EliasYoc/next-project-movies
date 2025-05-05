@@ -5,7 +5,7 @@ import MovieRecommendations from "../_components/movieRecommendations";
 import PictureTabs from "@/app/movie/[id]/_components/pictureTabs";
 import { Suspense } from "react";
 import { AnimatedCircularProgressBar } from "@/components/magicui/animated-circular-progress-bar";
-
+import LottieIconButton from "@/app/_components/lottieIconButton";
 export default async function SelectedMovie({
   params,
 }: {
@@ -35,7 +35,7 @@ export default async function SelectedMovie({
       </Cover>
 
       <div className="max-w-[850px] m-auto">
-        <div className="flex py-2">
+        <div className="flex items-center py-2 gap-2">
           <AnimatedCircularProgressBar
             className="w-[60px] h-[60px]"
             max={10}
@@ -44,6 +44,7 @@ export default async function SelectedMovie({
             gaugePrimaryColor="rgb(79 70 229)"
             gaugeSecondaryColor="rgba(0, 0, 0, 0.1)"
           />
+          <LottieIconButton />
         </div>
         <MovieRecommendations title="Recomendaciones" movieId={id} />
 
