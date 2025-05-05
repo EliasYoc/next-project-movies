@@ -29,7 +29,7 @@ export default function Cover({
       )}
       <div
         style={layoutStyle}
-        className={`cover-layout absolute left-0 top-0 w-full h-full p-4 ${layoutClassName}`}
+        className={`cover-layout absolute left-0 top-0 w-full h-full p-4 text-white ${layoutClassName}`}
       >
         {children}
       </div>

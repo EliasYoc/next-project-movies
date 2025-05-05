@@ -12,10 +12,14 @@ const LottiePlayer = dynamic(() => import("./_components/lottiePlayer"), {
 
 export default function LayoutHeader() {
   return (
-    <header className="fixed top-0 w-full flex text-3xl  p-3 z-10 backdrop-blur-2xl bg-[#00000094]">
+    <header className="fixed top-0 w-full h-[56px] flex text-3xl  p-1 z-10 backdrop-blur-2xl bg-[#f7f7f794]">
       <Link className="flex gap-2 items-center" href="/">
-        <LottiePlayer size={50} alternatelyLoop lottieJson={cinema} />
-        <h1>Movies</h1>
+        <LottiePlayer
+          size={40}
+          behavior="alternatelyLoop"
+          lottieJson={cinema}
+        />
+        <h1 className="text-2xl">Movies</h1>
       </Link>
     </header>
   );

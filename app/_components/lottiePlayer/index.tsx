@@ -1,4 +1,5 @@
 "use client";
+// https://lordicon.com/docs/react
 // como Player usa document entonces este componente debe estar en el client con dynamic()
 import { Player } from "@lordicon/react";
 import { useEffect, useRef, useState } from "react";
@@ -6,80 +7,84 @@ import { useEffect, useRef, useState } from "react";
 import { AnimationDirection } from "@lordicon/react/dist/interfaces";
 
 interface LottieIconProps {
-  onHover?: (player: Player | null) => void;
   onComplete?: (player: Player | null) => void;
-  alternatelyLoop?: boolean;
-  alternately?: boolean;
-  hover?: boolean;
-  touch?: boolean;
+  behavior?: "loop" | "normal" | "alternately" | "alternatelyLoop" | "none";
   lottieJson: unknown;
   size?: number;
   state?: string;
+  colorize?: string;
+  onReady?: (player: Player | null) => void;
 }
 export default function LottiePlayer(props: LottieIconProps) {
-  if ("alternatelyLoop" in props && "alternately" in props) {
-    throw new Error(
-      "You can't use both alternatelyLoop and alternately at the same time"
-    );
-  }
   const {
-    onHover,
     onComplete,
-    alternatelyLoop = false,
-    alternately = false,
-    hover = false,
+    behavior = "normal",
     lottieJson: icon,
     size = 96,
     state,
-    // touch = false,
+    colorize,
+    onReady = () => {},
   } = props;
 
   const playerRef = useRef<Player>(null);
   const [loops, setLoops] = useState(1);
-  const [direction, setDirection] = useState<AnimationDirection>(-1);
+  const activatedDirection = behavior === "alternatelyLoop" ? -1 : undefined;
+  const activatedDirection2 = behavior === "alternately" ? -1 : undefined;
+  const [direction, setDirection] = useState<AnimationDirection | undefined>(
+    activatedDirection || activatedDirection2
+  );
+  const [isPlayerReady, setIsPlayerReady] = useState(false);
 
   useEffect(() => {
-    playerRef.current?.play();
+    if (direction) playerRef.current?.play();
   }, [direction]);
 
   useEffect(() => {
-    playerRef.current?.playFromBeginning();
-  }, []);
+    if (behavior === "loop" || behavior === "normal") {
+      // playFromBeginning is not working with direction
+      playerRef.current?.playFromBeginning();
+    }
+  }, [behavior]);
+
+  useEffect(() => {
+    if (isPlayerReady) {
+      onReady(playerRef.current);
+    }
+  }, [isPlayerReady, onReady]);
 
   return (
-    <div
-      onMouseOver={() => {
-        if (onHover) onHover(playerRef.current);
-        if (hover) {
-          playerRef.current?.play();
-        }
+    <Player
+      onReady={() => {
+        setIsPlayerReady(true);
       }}
-    >
-      <Player
-        state={state}
-        ref={playerRef}
-        size={size}
-        icon={icon}
-        direction={direction}
-        onComplete={() => {
-          if (onComplete) onComplete(playerRef.current);
-          if (alternately) {
-            if (loops === 3) {
-              playerRef.current?.pause();
-              setLoops(1);
-              return;
-            }
-            setLoops(loops + 1);
+      state={state}
+      ref={playerRef}
+      size={size}
+      icon={icon}
+      direction={direction}
+      colorize={colorize}
+      onComplete={() => {
+        if (behavior === "loop") {
+          playerRef.current?.playFromBeginning();
+          return;
+        }
+        if (behavior === "alternately") {
+          if (loops === 3) {
+            playerRef.current?.pause();
+            setLoops(1);
+            return;
           }
-          if (alternatelyLoop || alternately) {
-            if (direction === 1) {
-              setDirection(-1);
-            } else {
-              setDirection(1);
-            }
+          setLoops(loops + 1);
+        }
+        if (behavior === "alternatelyLoop" || behavior === "alternately") {
+          if (direction === 1) {
+            setDirection(-1);
+          } else {
+            setDirection(1);
           }
-        }}
-      />
-    </div>
+        }
+        if (onComplete) onComplete(playerRef.current);
+      }}
+    />
   );
 }
